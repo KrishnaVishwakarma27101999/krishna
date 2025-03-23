@@ -1,329 +1,411 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Krishna Vishwakarma Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
-  <link rel="stylesheet" href="style.css">
-  <!-- <link rel="stylesheet" href="scribbler-landing.css"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="author" href="humans.txt">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Engineer Resume - LaTeX Style</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #333;
+            --accent-color: #666;
+            --text-color: #333;
+            --light-text: #666;
+            --bg-color: #fff;
+            --section-border: #eee;
+            --link-color: #3366cc;
+        }
 
+        [data-theme="dark"] {
+            --primary-color: #eee;
+            --accent-color: #aaa;
+            --text-color: #eee;
+            --light-text: #bbb;
+            --bg-color: #222;
+            --section-border: #444;
+            --link-color: #6699ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: content-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: "Computer Modern Serif", Georgia, "Times New Roman", serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            z-index: 100;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--light-text);
+            gap: 0.3rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--section-border);
+            padding-bottom: 0.3rem;
+        }
+
+        .summary p {
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            row-gap: 0.5em;
+            margin-bottom: 1.5em;
+        }
+
+        .skills-label {
+            font-weight: bold;
+        }
+
+        .entry {
+            margin-bottom: 1.5rem;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .entry-title {
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+
+        .entry-subtitle {
+            font-style: italic;
+            color: var(--light-text);
+            margin-bottom: 0.2rem;
+        }
+
+        .entry-date {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .entry-header {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div id=aboutus>
-    <nav>
-      <div class="logo">
-      </div>
-      <ul class="menu">
-        <div class="menu__item toggle"><span></span></div>
-        <li class="menu__item"><a href="#Experience" class="link link--dark"> Experience </a></li>
-        <li class="menu__item"><a href="#Projects" class="link link--dark"> Projects </a></li>
-        <li class="menu__item"><a href="#skillseducation" class="link link--dark"> Skills & Education </a></li>
-      </ul>
-    </nav>
-
-    <div class="hero">
-      <h1 class="hero__title">Krishna Vishwakarma</h1>
-      <p class="hero__description">Here's my profile</p>
-    </div>
-    <div class="hero__terminal">
-      <pre>
-        <div class="container">
-          <img src="profile.jpg" height="200px" width="200px">
-          <p><span>Data Engineer</span></p>
-          <div><p style="font-size: 15px; padding: 0px ;color: white;"><i class="fa fa-phone" ></i> +91-9702959363</p></div>
-          <div><p style="font-size: 15px; padding: 0px ;color: white;"><i class="fa fa-envelope" ></i> krishnapro4321@gmail.com </p></div>
-          <div><i class="fa fa-github" ></i> <a style="font-size: 15px; padding: 0px ;color: white;" href="https://github.com/KrishnaVishwakarma27101999" target="_blank" rel="noopener noreferrer">Github</a></div>
-          <div><i class="fa fa-linkedin-square" ></i> <a style="font-size: 15px; padding: 0px ;color: white;" href="https://www.linkedin.com/in/krishna-vishwakarma-988885194/" target="_blank" rel="noopener noreferrer">Linkedin</a> 
-          </div>
-        </div>
-      </pre>
-
+    <div class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-sun"></i>
     </div>
 
-    <div class="changelog__callout">
-      <a href="resume.pdf" class="button--secondary" target="_blank" rel="noopener noreferrer">Download Resume <i
-          class="fa fa-download"></i> </a>
-    </div>
-
-    <div class="changelog__callout">
-      <a href="#Experience"><i style="font-size: 20px; color: gray; margin: 10px ;" class="fa fa-arrow-down"
-          aria-hidden="true"></i></a>
-    </div>
-
-  </div>
-
-  <hr style="height:2px;border-width: 2px; color:gray;">
-
-  <div id="Experience">
-
-    <div class="wrapper">
-      <hr style="height:0px;border-width: 0px; color:gray;">
-      <h1 class="section__title">Experience</h1>
-      <div class="changelog__item">
-        <div class="changelog__meta">
-          <h4 class="changelog__title">Data Engineer</h4>
-          <small class="changelog__date">Springer Nature Technology and Publishing Solutions</small>
-          <div><i><small class="changelog__date">Oct-21 to Jan-2022</small></i></div>
+    <header>
+        <h1>Krishna Vishwakarma</h1>
+        <h2>Data Engineer</h2>
+        <div class="contact-info">
+            <span class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+919702959363">+91 9702959363</a>
+            </span>
+            <span class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:krishnapro4321@egmail.com">krishnapro4321@egmail.com</a>
+            </span>
+            <span class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Mumbai, India</span>
+            </span>
+            <span class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/krishna-vishwakarma-988885194/" target="_blank">linkedin.com/in/krishna-vishwakarma-988885194/</a>
+            </span>
+            <span class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/KrishnaVishwakarma27101999" target="_blank">github.com/KrishnaVishwakarma27101999</a>
+            </span>
         </div>
-        <div class="changelog__detail">
-          <ul>
-            <li>Build data pipelines in airflow in GCP for ETL related jobs using different airflow operators.</li>
-            <li>Experience with overseas team and co-ordinate with different data driven Projects</li>
-            <li>Experience in GCP PubSub, DataFlow, VM & Workbench, IAM, Cloud Storage, Cloud functions, BigQuery.</li>
-            <li>Coordinated with team and Developed framework to generate Daily adhoc reports and Extracts from enterprise data from BigQuery.</li>
-            <li>Designed and Co-ordinated with Data Science team in implementing Advanced Analytical Models over large Datasets.</li>
-            <li>Worked with google data catalog and other google cloud API’s for monitoring, query and billing related analysis for BigQuery usage. Good knowledge in using cloud shell for various tasks and deploying services. Work related to downloading BigQuery data into pandas frames for advanced ETL capabilities.</li>
-          </ul>
+    </header>
+
+    <section class="summary">
+        <h3 class="section-title">Summary</h3>
+        <p>
+            Experienced Data Engineer with <b>4+ years</b> of expertise in Cloud, ETL, and data analytics.
+        </p>
+    </section>
+
+    <section class="skills">
+        <h3 class="section-title">Technical Skills</h3>
+        <div class="skills-grid">
+            <div class="skills-label">Languages:</div>
+            <div>Python, SQL, HCL</div>
+
+            <div class="skills-label">Cloud Platforms:</div>
+            <div>AWS (EC2, S3, Lambda, Secret Manager, KMS, EventBridge, SNS, SQS, Glue, Step Functions, Athena, Redshift, RDS, Security Groups, EBS, DynamoDB, PySpark, Glue), GCP (Cloud Functions, BigQuery, Pub/Sub, VM Instances)</div>
+
+            <div class="skills-label">Databases:</div>
+            <div>Relational SQL (PostgreSQL, MySQL, SQL Server, Oracle), Data Warehousing (Snowflake, BigQuery, Redshift, Vertica), NoSQL (MongoDB, DynamoDB)</div>
+
+            <div class="skills-label">ETL:</div>
+            <div>Matillion, Pentaho, Airflow</div>
+
+            <div class="skills-label">CI/CD & IAAC:</div>
+            <div>Git, GitHub, Jenkins, Terraform, Flyway, SchemaChange</div>
+
+            <div class="skills-label">Containerization & Orchestration:</div>
+            <div>Docker, Kubernetes</div>
+
+            <div class="skills-label">BI Tools:</div>
+            <div>PowerBI, Metabase</div>
         </div>
-      </div>
+    </section>
 
-      <div class="changelog__item">
-        <div class="changelog__meta">
-          <h4 class="changelog__title">Data Engineer</h4>
-          <small class="changelog__date">Instinct Innovations Pvt Ltd.</small>
-          <div><i><b><small class="changelog__date">Dec-2020 to Oct-2021</small></b></i></div>
+    <section class="experience">
+        <h3 class="section-title">Work Experience</h3>
+        
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">WebMD</div>
+                <div class="entry-date">Dec 2024 - Mar 2025, Full-time</div>
+                
+            </div>
+            <div class="entry-subtitle">Data Engineer</div>
+            <ul>
+                <li>Introduced <b>Jenkins, Flyway, and Git</b> to automate deployment and database migration processes, enhancing efficiency and reducing manual errors.</li>
+                <li>Developed a <b>Pentaho ETL job</b> to extract data from <b>Vertica</b>, convert it to Parquet, and load it into <b>BigQuery using Google CLI</b>.</li>
+                <li>Automated documentation of ETL job in Confluence by <b>Generative API</b>.</li>
+            </ul>
         </div>
-        <div class="changelog__detail">
-          <ul>
-            <li>Modified schemas and database as per client’s requirements using SQL (Materialized Views, Extensions, and Indexes). Extensively involved in writing SQL queries (Complex queries, join conditions, etc.), PL/SQL programming.</li>
-            <li>Performed ETL on different database architecture and schema, executed queries as per client’s requirements.</li>
-            <li>Created dashboards and pulses using Metabase for BI team and understanding the existing business processes as well as interacting with end users to meet their requirements.</li>
-            <li>Executed aggregate queries using NoSQL in MongoDB and transformed the data for business needs.</li>
-            <li>Built AWS S3 bucket for downloading the data with the help of python. Analyzing logs and errors using AWS Cloudwatch.</li>
-            <li>Worked with business users/Analytics team, data architects to identify the business requirements and developed designed document for ETL flow, analysis of database architecture, created various complex Pentaho Transformations and Jobs using PDI Spoon.</li>
-            <li>Automated files for progress driven activity using Python (Pandas, Numpy, Beautifulsoup, etc.)</li>
-          </ul>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Indicia WorldWide</div>
+                <div class="entry-date">Nov 2024 - Feb 2022, Full-time</div>
+                
+            </div>
+            <div class="entry-subtitle">Data Engineer</div>
+            <ul>
+                <li>Led a project to revamp data engineering capabilities for a <b>London-based client</b>, integrating advanced data tools and enhancing data models, improving <b>data quality by 30%</b>.</li>
+                <li>Automated database migrations to <b>Snowflake</b> using a <b>generic Matillion ETL</b> process, reducing manual <b>effort by 25%</b>.</li>
+                <li>Developed an <b>ETL pipeline</b> with <b>PySpark</b> on <b>AWS EMR</b> to load daily sales data from <b>S3 to RDS PostgreSQL.</b></li>
+                <li>Developed and deployed <b>AWS Glue ETL </b>jobs to transform and load data from <b>S3 to Amazon Redshift.</b></li>
+                <li>Standardized client data structures, optimizing Snowflake, and <b>saved $23,000 in Q4</b>.</li>
+                <li>Reduced deployment time of objects in snowflake for <b>15k+ resources from 24 hours to 20 minutes</b> using <b>Terraform and Python</b> for state management.</li>
+                <li>Automated <b>MLOps</b> workflows by triggering data pipelines via <b>AWS EventBridge and Lambda</b>, allowing seamless model deployment <b>across AWS accounts</b>.</li>
+                <li>Implemented <b>Snowflake CI/CD pipeline with Git and Schemachange</b>, streamlining database object deployments and improving release cycles.</li>
+            </ul>
         </div>
-      </div>
-      <div class="changelog__item">
-        <div class="changelog__meta">
-          <h4 class="changelog__title">Android Developer</h4>
-          <small class="changelog__date">IIT - Bombay</small>
-          <div><i><small class="changelog__date">1 Month - Intern in 2019</small></i></div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Springer Nature Technology & Publishing Solutions (SNTPS)</div>
+                <div class="entry-date">Oct 2021– Jan 2022, Full-time</div>
+                
+            </div>
+            <div class="entry-subtitle">Data Engineer</div>
+            <ul>
+                <li>Automated <b>XML to BigQuery workflow on GCP using Python</b>, reducing file processing time for <b>300GB of data to just 45 minutes</b>, improving report delivery times.</li>
+                <li>Built ETL pipelines using <b>Airflow and GCP to fetch API data</b>, integrating <b>Pub/Sub</b> notifications for vendor updates, enhancing real-time reporting.</li>
+                <li>Conducted 5 training sessions on Data Modelling for <b>50+ colleagues</b>, improving the team’s data handling skills.</li>
+            </ul>
         </div>
-        <div class="changelog__detail">
-          <ul>
-            <li>Worked as an Intern Android developer.Work closely with Development, QA, Project Management and Product teams to ensure timely and cost effective delivery of final products.Strong implementation knowledge of algorithms, and designing for performance, scalability, and availability</li>
-            <li>Collaborated with quality engineers, user research, product management, design, and support teams to ensure quality in all phases of app development.</li>
-            <li>Created Frontend Design using XML, Java and gradle </li>
-          </ul>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Instinct Innovations Pvt Ltd. </div>
+                <div class="entry-date">Dec 2020– Oct 2021, Full-time</div>
+                
+            </div>
+            <div class="entry-subtitle">Data Engineer</div>
+            <ul>
+                <li>Designed ETL processes in <b>Pentaho</b> to track Trello activity, update views, and <b>refresh Metabase dashboards</b>, providing real-time insights.</li>
+                <li>Migrated <b>24 databases</b> from a Medical <b>ERP system to PostgreSQL</b>, automating data refresh and reducing manual <b>effort by 40%</b>.</li>
+                <li>Developed ETL pipelines to <b>load API data into MongoDB</b>, facilitating <b>NoSQL-based</b> business reports and automating daily finance summaries.</li>
+            </ul>
         </div>
-      </div>
-      <!-- <div class="changelog__item">
-        <div class="changelog__meta">
-          <h4 class="changelog__title">Android Developer</h4>
-          <small class="changelog__date">Pysher Incorporation</small>
-          <div><i><small class="changelog__date">1 Month - Intern in 2019</small></i></div>
+    </section>
+
+    <section class="education">
+        <h3 class="section-title">Education</h3>
+        
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Masters in Computer Applications </div>
+                <div class="entry-date">2021 - 2023</div>
+            </div>
+            <div class="entry-subtitle">University of Mumbai</div>
         </div>
-        <div class="changelog__detail">
-          <ul>
-            <li>Worked as an Intern Android developer</li>
-            <li>Frontend Design in Android Studio</li>
-            <li>Design Layouts and Functionalities of Apps</li>
-          </ul>
+
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">BSC in Information Technology</div>
+                <div class="entry-date">2017 - 2020</div>
+            </div>
+            <div class="entry-subtitle">University of Mumbai</div>
         </div>
-      </div> -->
-    </div>
-    <hr style="height:0px;border-width: 0px; color:gray;">
-  </div>
+    </section>
 
-  <hr style="height:2px;border-width: 2px; color:gray;">
-
-  <div id="Projects">
-    <div class="changelog">
-      <div class="wrapper">
-
-        <h1 class="section__title">Projects</h1>
-        <div>
-          <p>
-          </p>
-          <p>
-            List of Projects
-          </p>
+    <!-- <section class="projects">
+        <h3 class="section-title">Projects</h3>
+        
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Enterprise Data Lake Architecture</div>
+                <div class="entry-date">2023</div>
+            </div>
+            <div class="entry-subtitle">AWS, Spark, Glue, S3, Athena</div>
+            <p>Designed and implemented a modern data lake solution on AWS, enabling self-service analytics for over 200 users across the organization with 60% improvement in time-to-insight.</p>
         </div>
-        <div class="feature">
-          <div class="feature__item">
-            <h3 class="section__title">NodeForm</h3>
-            <p>Node React Login Form With Database MongoDB</p>
-            <a href="https://github.com/KrishnaVishwakarma27101999/nodeForm-with-MongoDB" target="_blank"
-              rel="noopener noreferrer" style="color: blue;">
-              <i class="fa fa-github" aria-hidden="true" style="color: blue;"></i>
-              Link </a>
-          </div>
-          <div class="feature__item">
-            <h3 class="section__title">OCR - Android App</h3>
-            <p>Optical Charachter helps to convert image to text with help of google Api</p>
-            <a href="https://github.com/KrishnaVishwakarma27101999/Android-Projects/tree/master/readeableconveter"
-              target="_blank" rel="noopener noreferrer" style="color: blue;">
-              <i class="fa fa-github" aria-hidden="true" style="color: blue;"></i>
-              Link </a>
-          </div>
-          <div class="feature__item">
-            <h3 class="section__title">Todo Task Website</h3>
-            <p>Note App made with javascript .User can perform CRUD</p>
-            <a href="https://github.com/KrishnaVishwakarma27101999/javascript-note-app" target="_blank"
-              rel="noopener noreferrer" style="color: blue;">
-              <i class="fa fa-github" aria-hidden="true" style="color: blue;"></i>
-              Link </a>
-          </div>
-          <div class="feature__item">
-            <h3 class="section__title">Realtime Socket IO WebApp</h3>
-            <p>Chat webApp for Two User with Socket IO to Used </p>
-            <a href="https://github.com/KrishnaVishwakarma27101999/Real-time-App-Socket-io-web-App" target="_blank"
-              rel="noopener noreferrer" style="color: blue;">
-              <i class="fa fa-github" aria-hidden="true" style="color: blue;"></i>
-              Link </a>
-          </div>
-          <div class="feature__item">
-            <h3 class="section__title">Gym Webiste Contact Form </h3>
-            <p>Made with Html/Css React javascript MongoDB for contact data to store in mongodb</p>
-            <a href="https://github.com/KrishnaVishwakarma27101999/Gym-Webiste-contact-form-mongodb" target="_blank"
-              rel="noopener noreferrer" style="color: blue;">
-              <i class="fa fa-github" aria-hidden="true" style="color: blue;"></i>
-              Link </a>
-          </div>
-          <div class="feature__item">
-            <h1> More.. </h1>
-            <a href="https://github.com/KrishnaVishwakarma27101999?tab=repositories" target="_blank"
-              rel="noopener noreferrer" style="color: blue;"><p style="color: blue;">Click Here</p></a>
-          </div>
 
-
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Real-time Analytics Platform</div>
+                <div class="entry-date">2022</div>
+            </div>
+            <div class="entry-subtitle">Kafka, Spark Streaming, Redis, Grafana</div>
+            <p>Built a real-time analytics platform processing 10,000+ events per second with sub-second latency for IoT device monitoring and analytics.</p>
         </div>
-      </div>
-      <hr style="height:0px;border-width: 0px; color:gray;">
-      <hr style="height:0px;border-width: 0px; color:gray;">
-    </div>
 
-  </div>
-
-  <hr style="padding: 0px; border-width: 1px; color:gray;">
-
-  <div id="skillseducation">
-    <div class="wrapper">
-      <hr style=" border-width: 0px; color:gray;">
-
-
-      <section class="js-section">
-        <h1 class="section__title">Skills & Education</h1>
-        <div>
-          <hr style="padding: 0px; border-width: 1px; color:gray;">
-          <h4><i>Academics</i></h4>
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Open-Source Data Quality Framework</div>
+                <div class="entry-date">2021</div>
+            </div>
+            <div class="entry-subtitle">Python, Great Expectations, dbt</div>
+            <p>Created and open-sourced a data quality framework with 500+ GitHub stars, enabling automated validation and testing of data pipelines.</p>
         </div>
-        <table id="customers">
-          <tr>
-            <th>Qualification</th>
-            <th>College</th>
-            <th>Year</th>
-          </tr>
-          <tr>
-            <td>MCA
-            </td>
-            <td>Mumbai University</td>
-            <td>
-              <div><i>2021 (Pursuing)</i></div>
-            </td>
-          </tr>
-          <tr>
-            <td>BSC-IT
-            </td>
-            <td>Mumbai University - JES College</td>
-            <td>
-              <div><i>2020</i></div>
-            </td>
-          </tr>
-          <tr>
-            <td>HSC
-            </td>
-            <td>Divine Child Junior College</td>
-            <td>
-              <div><i>2017</i></div>
-            </td>
-          </tr>
-          <tr>
-            <td>SSC
-            </td>
-            <td>St. Anthony's High School</td>
-            <td>
-              <div><i>2015</i></div>
-            </td>
-          </tr>
-        </table>
+    </section> -->
 
-        <div>
-          <hr style="padding: 0px; border-width: 1px; color:gray;">
-          <h4><i>Certifications</i></h4>
+    <section class="awards">
+        <h3 class="section-title">Awards & Certifications</h3>
+        
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">HackerRank</div>
+            </div>
+            <div class="entry-subtitle">SQL <a href=" https://www.hackerrank.com/certificates/e25664340e2b" target="_blank">Intermediate</a> & <a href=" https://www.hackerrank.com/certificates/707349e9fce6" target="_blank"
+                rel="noopener noreferrer"> Basic</a></div>
         </div>
-        <ul>
-          <li>
-            <p><a href=" https://www.hackerrank.com/certificates/e25664340e2b" target="_blank"
-                rel="noopener noreferrer" style="color: blue;"><i><u>Hacker Rank - SQL
-                Intermediate</u></i></a></p>
-          </li>
-          <li>
-            <p><a href=" https://www.hackerrank.com/certificates/707349e9fce6" target="_blank"
-                rel="noopener noreferrer" style="color: blue;"><i><u>Hacker Rank - SQL
-                Basic</u></i></a></p>
-          </li>
-        </ul>
 
-        <div>
-          <hr style="padding: 0px; border-width: 1px; color:gray;">
-          <h4><i>Skills</i></h4>
-          <ul>
-            <li type="square">
-              <p><b>Language :</b> Python, SQL (PLSQL, MySQL, PostgreSQL).</p>
-            </li>
-            <li type="square">
-              <p><b>Frameworks:</b> HTML/CSS, MS SQL Server 2008/2014, PgAdmin3/4, Dbeaver, NoSQL Booster, Interactive SQL(SAP)</p>
-            </li>
-            <li type="square">
-              <p><b>Developer tools:</b> Git, GitHub, AWS, MongoDB, Postman, Metabase, Power BI, Tableau, Pentaho, Jupyter Notebook, Pandas.</p>
-            </li>
-            <li type="square">
-              <p><b>Other skills:</b> Booting OS, Graphic Designing, and Advance Excel.</p>
-            </li>
-          </ul>
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Internshala</div>
+            </div>
+            <div class="entry-subtitle">Flutter & Android Developer - IIT Bombay</div>
         </div>
-      </section>
-    </div>
-  </div>
-
-  <hr style=" border-width: 0px; color:gray;">
-  <hr style=" border-width: 0px; color:gray;">
 
 
-  <div class="changelog__callout">
-    <a href="#aboutus"><i style="font-size: 20px; color: gray; margin: 10px ;" class="fa fa-arrow-up"
-        aria-hidden="true"></i></a>
-  </div>
+    </section>
 
-  <footer class="footer">
-
-    <a href="https://www.linkedin.com/in/krishna-vishwakarma-988885194" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-linkedin-square"> </i></a>
-    <i class="fa fa-envelope"> </i></a>
-    <a href="https://github.com/KrishnaVishwakarma27101999" target="_blank" rel="noopener noreferrer"><i
-        class="fa fa-github"> </i></a>
-    <div>
-      <p style="font-size: 15px;margin:20px 0px; padding:0px 20px ;color: white; "><i
-          style="font-size: medium; padding: 0.5rem;" class="fa fa-copyright"></i>Copyright 2020 | Krishna Vishwakarma
-      </p>
-    </div>
-  </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-  <script src="javascript.js"></script>
-
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const icon = document.querySelector('.theme-switch i');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    </script>
 </body>
-
 </html>
